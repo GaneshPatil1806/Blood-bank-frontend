@@ -1,0 +1,14 @@
+.navbar
+{
+    background-color: #617189;
+}
+
+.nav-item .nav-link{
+    color: aliceblue;
+    font-weight: 600;
+}
+
+.navbar-brand{
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+}

@@ -1,0 +1,26 @@
+/* Success.css */
+
+/* Container for the success page content */
+.SuccessContainer {
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Success message style */
+  .box p {
+    font-size: 18px;
+    font-weight: 600;
+    color: #48be48;
+  }
+  
+  .box {
+    width: 200px;
+    height: 140px;
+    border: 2px solid #000000;
+    padding: 10px; 
+    text-align: center; 
+    margin: 100px auto;
+    justify-content: center;
+  }
+  

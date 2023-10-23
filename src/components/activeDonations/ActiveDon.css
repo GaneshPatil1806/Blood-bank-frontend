@@ -1,0 +1,45 @@
+/* Styles for BloodDonorTable component */
+.BloodDonorTable {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 800px;
+  }
+  
+ .stock h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ddd;
+    margin: 10px;
+  }
+  
+  .stock table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+  }
+  
+  .stock table th, table td {
+    padding: 10px;
+  }
+  
+  .stock thead {
+    background-color: #333;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .stock  tbody tr:nth-child(odd) {
+    background-color: #fff;
+  }
+  
+  .stock  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .stock  table tr:hover {
+    background-color: #ddd;
+  }
+  
+  /* Add more CSS styles as needed to customize the appearance of the table */
+  

@@ -1,0 +1,13 @@
+.footer_div
+{
+    background-color: #97a0ac;
+    padding-top: 10px;
+}
+.footer_div i
+{
+    color: white;
+}
+
+.text-uppercase fw-bold mb-4 h6{
+    margin-right: 0;
+}
