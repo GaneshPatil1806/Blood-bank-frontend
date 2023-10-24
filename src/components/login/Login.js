@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import { useNavigate, NavLink } from "react-router-dom";
 
-
-const Login = () => {
+const Login = ({isLoggedIn,setIsLoggedIn}) => {
   const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState({});
   const [user, setUserDetails] = useState({
@@ -40,19 +39,22 @@ const Login = () => {
     
       if (Object.keys(errors).length === 0) {
         try {
-            const response = await fetch("/user/signin", {
+            const response = await fetch("/signin", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify(user),
             });
-          if (response.ok) {
+          
+          if (response.ok) 
+          {
             const data = await response.json();
             if (data.error) {
               throw new Error(data.error);
             } else {
-              console.log(data);
+              setIsLoggedIn(true);
+              localStorage.setItem('token', JSON.stringify(data.token));
               navigate("/home");
             }
           } else {

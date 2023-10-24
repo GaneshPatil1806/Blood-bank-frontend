@@ -27,10 +27,10 @@ export default function Footer() {
                   blood-donate@gmail.com
                 </p>
                 <p>
-                  <i className="fa fa-phone me-3"></i> + 82370-95572
+                  <i className="fa fa-phone me-3"></i>82370-95572
                 </p>
                 <p>
-                  <i className="fa fa-print me-3 "></i> + 82370-95572{" "}
+                  <i className="fa fa-print me-3 "></i>82370-95572{" "}
                 </p>
               </div>
             </div>

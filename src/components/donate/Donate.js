@@ -1,76 +1,95 @@
 import React, { useState } from "react";
 import './Donate.css'
+import { useNavigate, NavLink } from "react-router-dom";
 
 const Donate = () => {
   const [DonateData, setDonateData] = useState({
-    name: "",
-    bloodType: "",
-    location: "",
+    hospital: "",
+    quantity: "",
+    weight: "",
   });
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const items = JSON.parse(localStorage.getItem('token'));
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("/blood/donate", {
-      method: "POST",
+    setError(null); // Clear any previous errors
+    console.log(items);
+    const response = await fetch("/donate", {
+    method: "POST",
       headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(DonateData),
-    });
-  
-    console.log(response);
+      "Content-Type": "application/json",
+        "Authorization": `Bearer ${items}`,
+  },
+    body: JSON.stringify(DonateData),
+});
 
-  };
-  
+  if (response.ok) {
+    const data = await response.json();
+    if (data.error) {
+      setError(data.error); // Set the error message in state
+    } else {
+      navigate("/success");
+    }
+  } else {
+    const errorData = await response.text();
+    setError(errorData); // Set the error message in state
+  }
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setDonateData({
-      ...DonateData,
-      [name]: value,
-    });
-  };
+};
 
-  return (
-    <div className="Blood-box">
-      <div className="BloodDonateContainer">
-        <h1>Blood Donate Form</h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="name">HOSPITAL</label>
-          <input
-            type="text"
-            id="hospital"
-            name="hospital"
-            value={DonateData.hospital}
-            onChange={handleChange}
-            required
-          />
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setDonateData({
+    ...DonateData,
+    [name]: value,
+  });
+};
 
-          <label htmlFor="bloodType">QUANTITY</label>
-          <input
-            type="text"
-            id="quantity"
-            name="quantity"
-            value={DonateData.quantity}
-            onChange={handleChange}
-            required
-          />
+return (
+  <div className="Blood-box">
+    <div className="BloodDonateContainer">
+      <h1>Blood Donate Form</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="hospital">HOSPITAL</label>
+        <input
+          type="text"
+          id="hospital"
+          name="hospital"
+          value={DonateData.hospital}
+          onChange={handleChange}
+          required
+        />
 
-          <label htmlFor="location">WEIGHT</label>
-          <input
-            type="text"
-            id="weight"
-            name="weight"
-            value={DonateData.weight}
-            onChange={handleChange}
-            required
-          />
+        <label htmlFor="quantity">QUANTITY</label>
+        <input
+          type="text"
+          id="quantity"
+          name="quantity"
+          value={DonateData.quantity}
+          onChange={handleChange}
+          required
+        />
 
-          <button type="submit">Submit Donate</button>
-        </form>
-      </div>
+        <label htmlFor="weight">WEIGHT</label>
+        <input
+          type="text"
+          id="weight"
+          name="weight"
+          value={DonateData.weight}
+          onChange={handleChange}
+          required
+        />
+
+        {error && <div className="error-message">{error}</div>}
+
+        <button type="submit">Submit Donate</button>
+      </form>
     </div>
-  );
+  </div>
+);
 };
 
 export default Donate;

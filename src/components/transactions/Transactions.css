@@ -1,47 +1,49 @@
-    /* BloodTransaction.css */
+/* Transactions.css */
 
 .BloodTransactionContainer {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .BloodTransactionContainer h2 {
-    font-size: 24px;
-    color: #fafafa;
-    margin-bottom: 20px;
-  }
-  
-  .BloodTransactionContainer .transactionList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .BloodTransactionContainer .transactionItem {
-    width: 300px;
-    padding: 15px;
-    margin: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .BloodTransactionContainer .transactionItem p {
-    font-size: 16px;
-    color: #ffffff;
-    margin: 8px 0;
-  }
-  
-  /* Styling for the "Your donation history is empty" message */
-  .BloodTransactionContainer .emptyMessage {
-    font-size: 18px;
-    color: #777;
-    margin: 20px 0;
-  }
-  
-  /* Add more styles as needed to match your design preferences */
-  
+  text-align: center;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.transactionList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.transactionItem {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.transactionItem p {
+  margin: 5px 0;
+}
+
+p {
+  font-size: 18px;
+  margin: 20px;
+}
+
+/* Empty state */
+p.yourDonationHistoryIsEmpty {
+  font-size: 18px;
+  margin: 20px;
+}

@@ -3,58 +3,47 @@ import './ActiveDon.css'
 
 const BloodDonorTable = () => {
   const [donors, setDonors] = useState([]);
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   useEffect(() => {
-    fetch("/transcation", {
+    const items = JSON.parse(localStorage.getItem('token'));
+    fetch("/activeDonation", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${items}`,
       },
     })
       .then((response) => response.json())
       .then((data) => {
-  
-        setDonors(data.donors);
+        console.log(data);
+        setDonors(data.donation);
       })
       .catch((error) => {
         console.error("Error fetching donor data:", error);
       });
   }, []);
-  
-
-  const handleRequestBlood = () => {
-    if (isUserLoggedIn === true) {
-      // TODO: req the blood if accepted delete from the blood bank
-      // history.push("/success");
-    } else {
-      // history.push("/login");
-    }
-  };
 
   return (
-    <div className="stock">
+    <div className="BloodDonorTable"> {/* Corrected class name */}
       <h2>Blood Donor Information</h2>
-      {donors && donors.length() > 0 ? (
-        <table>
+      {donors ? (
+        <table className="stock"> {/* Corrected class name */}
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Email</th>
               <th>Blood Type</th>
-              <th>Location</th>
-              <th>Action</th>
+              <th>Donation Date</th>
+              <th>Hospital</th>
+              <th>Is Available</th>
             </tr>
           </thead>
           <tbody>
             {donors.map((donor, index) => (
               <tr key={index}>
-                <td>{donor.first_name}</td>
-                <td>{donor.last_name}</td>
                 <td>{donor.blood}</td>
-                <td>
-                  <button onClick={handleRequestBlood}>Request Blood</button>
-                </td>
+                <td>{donor.donation_date}</td>
+                <td>{donor.hospital}</td>
+                <td>{donor.is_available.toString()}</td> {/* Convert boolean to string */}
+          
               </tr>
             ))}
           </tbody>

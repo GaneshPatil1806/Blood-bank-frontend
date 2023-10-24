@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Register.css";
 import { useNavigate, NavLink } from "react-router-dom";
 
-const Register = () => {
+const Register = ({isLoggedIn,setIsLoggedIn}) => {
   const navigate = useNavigate();
   const [formErrors, setFormErrors] = useState({});
   const [user, setUserDetails] = useState({
@@ -78,7 +78,7 @@ const Register = () => {
     setFormErrors(errors);
     if (Object.keys(errors).length === 0) {
       try {
-        const response = await fetch("/user/signup", {
+        const response = await fetch("/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -90,8 +90,8 @@ const Register = () => {
         console.log(response);
         if (response.ok) {
           await response.json();
-          console.log(response);
-          navigate("/stock");
+          setIsLoggedIn(true);
+          navigate("/home");
         } else {
           const errorData = await response.json();
           throw new Error(errorData.error);

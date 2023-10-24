@@ -1,46 +1,40 @@
-/* BloodSamples.css */
-
+/* Styles for BloodSamples component */
 .BloodSamplesContainer {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
   text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
 }
 
 .BloodSamplesContainer h2 {
-    padding: auto;
   font-size: 24px;
+  margin: 10px 0;
   color: #ffffff;
 }
 
-.BloodSamplesContainer .sampleList {
+.sampleList {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.BloodSamplesContainer .sampleBox {
-    width: 180px;
-    padding: 15px;
-    margin: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-    &:hover {
-        transform: translateY(-3px);
-        box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
-      }
-    }
+.sampleBox {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  width: calc(33.33% - 20px);
+  background-color: #f7f7f7;
+}
 
-    .BloodSamplesContainer h3 {
-  font-size: 18px;
+.sampleBox h3 {
+  font-size: 20px;
+  margin: 0;
   color: #333;
 }
 
-.BloodSamplesContainer p {
-  font-size: 16px;
-  color: #777;
+.sampleBox p {
+  margin: 10px 0;
+  color: #555;
 }
+
+/* Add more CSS styles as needed to customize the appearance of the blood samples */

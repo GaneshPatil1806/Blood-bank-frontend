@@ -1,6 +1,6 @@
 import React from 'react'
-import poster1 from '../images/c1.jpg';
-import poster2 from '../images/c2.avif';
+import poster1 from '../images/c5.jpg';
+import poster2 from '../images/c3.webp';
 import './Carousel.css'
 
 export default function Carousel() {

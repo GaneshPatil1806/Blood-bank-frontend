@@ -5,21 +5,27 @@ const BloodTransaction = () => {
   const [transactions, setTransactions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isEmpty, setIsEmpty] = useState(false);
-
+  const items = JSON.parse(localStorage.getItem('token'));
+ 
   useEffect(() => {
-    // Make a GET request to your backend API to fetch the blood donation transactions
-    fetch("/api/show_transaction") // Replace with the actual API endpoint
+    fetch("/transaction", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${items}`,
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
-        if (data.donation && data.donation.length > 0) {
-          setTransactions(data.donation); // Update the state with the fetched data
-        } else {
+        if (data.length === 0) {
           setIsEmpty(true);
+        } else {
+          setTransactions(data);
         }
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching transaction data:", error);
         setIsLoading(false);
       });
   }, []);
@@ -35,10 +41,11 @@ const BloodTransaction = () => {
         <div className="transactionList">
           {transactions.map((transaction, index) => (
             <div className="transactionItem" key={index}>
-              {/* Display transaction details here */}
-              <p>Transaction ID: {transaction.transaction_id}</p>
-              <p>Donor ID: {transaction.donor_id}</p>
+              <p>Donor ID: {transaction.donar_id}</p>
               <p>Receiver ID: {transaction.receiver_id}</p>
+              <p>Blood Type: {transaction.blood}</p>
+              <p>Quantity: {transaction.quantity}</p>
+              <p>Created At: {transaction.created_at}</p>
               {/* Add more details as needed */}
             </div>
           ))}

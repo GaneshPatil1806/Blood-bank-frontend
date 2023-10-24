@@ -1,57 +1,65 @@
 import React from 'react';
-import {} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
-const NavBar = () => {
- 
+const NavBar = ({isLoggedIn, setIsLoggedIn}) => {
+  const navigate = useNavigate();
 
-  // function Logout() {
-  //   fetch("/logout", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
-  //   setisRLoggedIn(false);
-  //   setisDLoggedIn(false);
-  //   navigate("/");
-  // }
+  const handleLogout = () => {
+    fetch("/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then(() => {
+      setIsLoggedIn(false); // Set the user as logged out
+      navigate("/login"); 
+    })
+    .catch((error) => {
+      console.error("Error logging out:", error);
+    });
+  }
 
   return (
     <div>
       <nav className="navbar navbar-expand-lg">
-  <div className="container-fluid">
-    <a className="navbar-brand" href="#/">Blood Bank Management</a>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <a className="nav-link" aria-current="page" href="/home">Home</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/login">Login</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/activeDon">Active Donations</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/success">Success</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/donate">Donate</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/getall">Quantity</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/transactions">Transactions</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+        <div className="container-fluid">
+          <a className="navbar-brand" href="/home">Blood Bank Management</a>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link className="nav-link" to="/home">Home</Link>
+              </li>
+              <li className="nav-item">
+                {isLoggedIn ? (
+                  <button className="nav-item button" onClick={handleLogout}>Logout</button>
+                ) : (
+                  <Link className="nav-link" to="/login">Login</Link>
+                )}
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/activeDon">Active Donations</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/donate">Donate</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/getall">Quantity</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/transactions">Transactions</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/receive">Receive</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
   );
 };

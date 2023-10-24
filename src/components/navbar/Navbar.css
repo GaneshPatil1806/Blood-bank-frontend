@@ -12,3 +12,14 @@
     color: rgb(255, 255, 255);
     font-weight: 600;
 }
+
+.nav-item .button{
+    color: aliceblue;
+    font-weight: 600;   
+    margin: 0 0;
+    border: none;
+    background: transparent;
+    align-items: center;
+    align-content: center;
+    padding: 8px 10px;
+}
