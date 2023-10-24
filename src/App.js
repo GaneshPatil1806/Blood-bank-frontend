@@ -27,7 +27,7 @@ function App() {
           <Route exact path="/login" element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}></Route>
           <Route exact path="/success" element={<Success />}></Route>
           <Route exact path="/donate" element={<Donate />}></Route>
-          <Route exact path="/home" element={<Home/>}></Route>
+          <Route exact path="/" element={<Home/>}></Route>
           <Route exact path="/activeDon" element={<ActiveDon />}></Route>
           <Route exact path="/register" element={<Register isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}></Route>
           <Route exact path="/getall" element={<Quantity />}></Route>

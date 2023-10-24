@@ -2,17 +2,21 @@
 
 .BloodTransactionContainer {
   text-align: center;
-  padding: 20px;
   background-color: #f4f4f4;
   border: 1px solid #ddd;
   border-radius: 5px;
-  margin: 20px;
 }
 
-h2 {
+.BloodTransactionContainer h2 {
+  padding: 24px;
   font-size: 24px;
   margin-bottom: 20px;
 }
+
+.BloodTransactionContainer p {
+  padding: 0px;
+}
+
 
 .transactionList {
   display: flex;

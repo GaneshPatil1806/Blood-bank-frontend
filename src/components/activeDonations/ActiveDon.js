@@ -19,7 +19,7 @@ const BloodDonorTable = () => {
         setDonors(data.donation);
       })
       .catch((error) => {
-        console.error("Error fetching donor data:", error);
+        console.error("Error fetching donor data:");
       });
   }, []);
 
@@ -49,7 +49,7 @@ const BloodDonorTable = () => {
           </tbody>
         </table>
       ) : (
-        <p>Loading donor data...</p>
+        <p>No donors data present.</p>
       )}
     </div>
   );

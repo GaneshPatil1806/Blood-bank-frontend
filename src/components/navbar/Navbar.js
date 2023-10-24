@@ -1,9 +1,19 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {React,useEffect} from 'react';
+import { Link, useNavigate} from 'react-router-dom';
 import './Navbar.css';
+
 
 const NavBar = ({isLoggedIn, setIsLoggedIn}) => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem('token');
+    if (isLoggedIn !== '') {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false); 
+    }
+  }, [setIsLoggedIn]);
 
   const handleLogout = () => {
     fetch("/logout", {
@@ -13,6 +23,7 @@ const NavBar = ({isLoggedIn, setIsLoggedIn}) => {
       },
     })
     .then(() => {
+      localStorage.setItem('token', '');
       setIsLoggedIn(false); // Set the user as logged out
       navigate("/login"); 
     })
@@ -32,7 +43,7 @@ const NavBar = ({isLoggedIn, setIsLoggedIn}) => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link" to="/home">Home</Link>
+                <Link className="nav-link" to="/">Home</Link>
               </li>
               <li className="nav-item">
                 {isLoggedIn ? (

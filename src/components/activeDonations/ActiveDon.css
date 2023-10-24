@@ -39,4 +39,14 @@
 .BloodDonorTable table tr:hover {
   background-color: #ddd;
 }
-/* Add more CSS styles as needed to customize the appearance of the table */
+
+/* Additional styles for BloodDonorTable component */
+.BloodDonorTable p {
+  background-color: #ddd;
+  padding: 10px;
+  margin: 0; /* Reset margin to 0 */
+  font-size: 16px; /* Adjust font size as needed */
+  border-radius: 5px; /* Add border-radius to match the container style */
+}
+
+/* You can continue adding more custom styles as needed for the BloodDonorTable component. */

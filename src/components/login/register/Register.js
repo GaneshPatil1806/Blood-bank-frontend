@@ -13,7 +13,7 @@ const Register = ({isLoggedIn,setIsLoggedIn}) => {
     country: "",
     blood: "",
     gender: "",
-    medical_issue: "",
+    medical_issue: "None",
     dob: "",
     password: ""
   });
@@ -71,7 +71,6 @@ const Register = ({isLoggedIn,setIsLoggedIn}) => {
     return errors;
   };
 
-
   const signupHandler = async (e) => {
     e.preventDefault();
     const errors = validateForm(user);
@@ -89,9 +88,10 @@ const Register = ({isLoggedIn,setIsLoggedIn}) => {
         console.log(JSON.stringify(user))
         console.log(response);
         if (response.ok) {
-          await response.json();
+          const data=await response.json();
+          localStorage.setItem('token', JSON.stringify(data.token));
           setIsLoggedIn(true);
-          navigate("/home");
+          navigate("/");
         } else {
           const errorData = await response.json();
           throw new Error(errorData.error);
@@ -194,19 +194,6 @@ const Register = ({isLoggedIn,setIsLoggedIn}) => {
                 onChange={changeHandler}
                 value={user.gender}
               />
-              <p className="errors  medical_issue">{formErrors.medical_issue}</p>
-              <label>
-              MEDICAL ISSUE&nbsp;<i className="fa-solid fa-envelope"></i>
-              </label>
-              <input
-                type="text"
-                name="medical_issue"
-                id="medical_issue"
-                placeholder="Medical issue"
-                onChange={changeHandler}
-                value={user.medical_issue}
-              />
-              <p className="errors  medical_issue">{formErrors.dob}</p>
               <label>
               DOB&nbsp;<i className="fa-solid fa-envelope"></i>
               </label>

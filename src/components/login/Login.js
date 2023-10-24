@@ -55,7 +55,7 @@ const Login = ({isLoggedIn,setIsLoggedIn}) => {
             } else {
               setIsLoggedIn(true);
               localStorage.setItem('token', JSON.stringify(data.token));
-              navigate("/home");
+              navigate("/");
             }
           } else {
             const errorData = await response.text();

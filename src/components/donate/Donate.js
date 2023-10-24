@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './Donate.css'
 import { useNavigate, NavLink } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const Donate = () => {
   const [DonateData, setDonateData] = useState({
