@@ -1,44 +1,77 @@
-import React, { useState } from 'react';
-import './Receive.css'
+import React, { useState, useEffect } from 'react';
+import './Receive.css';
 
 const ReceiveBlood = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [donors, setDonors] = useState([]);
   const items = JSON.parse(localStorage.getItem('token'));
-  
 
-  const handleReceiveBlood = async () => {
-    setIsLoading(true);
-
-    try {
-      const response = await fetch('/recieve', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          "Authorization": `Bearer ${items}`,
-        },
+  useEffect(() => {
+    fetch('/showDonation', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${items}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setDonors(data.donation);
+      })
+      .catch((error) => {
+        console.error('Error fetching donor data:', error);
       });
+  }, []);
 
-      if (response.ok) {
-        
-      } else {
-
-        const errorData = await response.json();
-        setError(errorData.error);
-      }
-    } catch (error) {
-      setError('Internal Server Error');
-    }
-
-    setIsLoading(false);
+  const handleReceive = (donorId) => {
+    fetch('/recieve', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${items}`,
+      },
+      body: JSON.stringify({d_id: donorId }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle the response from the backend if needed
+      })
+      .catch((error) => {
+        console.error('Error receiving blood:', error);
+      });
   };
 
   return (
-    <div>
-      <button onClick={handleReceiveBlood} disabled={isLoading}>
-        {isLoading ? 'Receiving...' : 'Receive Blood'}
-      </button>
-      {error && <p>{error}</p>}
+    <div className="transa">
+      <h2>Blood Donor Information</h2>
+      {donors ? (
+        <table className="stock">
+          <thead>
+            <tr>
+              <th>Blood Type</th>
+              <th>Donation Date</th>
+              <th>Hospital</th>
+              <th>Is Available</th>
+              <th>Receive</th>
+            </tr>
+          </thead>
+          <tbody>
+            {donors.map((donor, index) => (
+              <tr key={index}>
+                <td>{donor.blood}</td>
+                <td>{donor.donation_date}</td>
+                <td>{donor.hospital}</td>
+                <td>{donor.is_available.toString()}</td>
+                <td>
+                  <button onClick={() => handleReceive(donor.id)}>Receive</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p>Loading donor data...</p>
+      )}
     </div>
   );
 };

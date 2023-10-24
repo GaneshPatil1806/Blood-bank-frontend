@@ -8,7 +8,7 @@ const BloodTransaction = () => {
   const items = JSON.parse(localStorage.getItem('token'));
  
   useEffect(() => {
-    fetch("/transaction", {
+    fetch("/transcation", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -20,7 +20,8 @@ const BloodTransaction = () => {
         if (data.length === 0) {
           setIsEmpty(true);
         } else {
-          setTransactions(data);
+          console.log(data);
+          setTransactions(data.donation);
         }
         setIsLoading(false);
       })

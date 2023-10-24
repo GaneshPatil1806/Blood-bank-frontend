@@ -1,26 +1,44 @@
-/* Styles for ReceiveBlood component */
-.ReceiveBloodButton {
-    text-align: center;
-    margin: 20px auto;
-  }
-  
-  .ReceiveBloodButton button {
-    background-color: #007bff;
-    color: #fff;
-    font-size: 16px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .ReceiveBloodButton button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .ReceiveBloodButton p {
-    color: #ff0000;
-    font-size: 14px;
-    margin-top: 10px;
-  }  
+/* Receive.css */
+
+.stock {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transa h2{
+  color: #ffffff;
+  padding: 10px;
+}
+
+.stock th,
+.stock td,
+.stock{
+  background:#969595;
+  border: 1px solid #000000;
+  padding: 8px;
+  text-align: left;
+}
+
+.stock th {
+  background-color:#969595;
+}
+
+.stock tr:nth-child(even) {
+  background-color: rgba(242, 242, 242, 0.5); /* Transparent background for even rows */
+}
+
+.stock tr:hover {
+  background-color: #ddd;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}

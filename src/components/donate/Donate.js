@@ -5,7 +5,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 const Donate = () => {
   const [DonateData, setDonateData] = useState({
     hospital: "",
-    quantity: "",
+    quantity: "1",
     weight: "",
   });
   const [error, setError] = useState(null);
@@ -59,16 +59,6 @@ return (
           id="hospital"
           name="hospital"
           value={DonateData.hospital}
-          onChange={handleChange}
-          required
-        />
-
-        <label htmlFor="quantity">QUANTITY</label>
-        <input
-          type="text"
-          id="quantity"
-          name="quantity"
-          value={DonateData.quantity}
           onChange={handleChange}
           required
         />
